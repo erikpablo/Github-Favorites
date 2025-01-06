@@ -10,18 +10,20 @@ export class Favorites {
     load() {
         this.entries = [
             {
-                login: 'erikpablo',
-                name: "Erik Pablo",
-                public_repos: '28',
-                followers: '5'
-            }, 
+               login: 'erikpablo',
+               name: 'Erik Pablo',
+               public_repos: '28',
+               followers: '5'
+            },
+   
             {
-                login: 'maxmillernunes',
-                name: "Maxmiller Nunes",
-                public_repos: '28',
-                followers: '5'
-            }
-        ]
+               login: 'maxmillernunes',
+               name: "Maxmiller Nunes",
+               public_repos: '28',
+               followers: '5'
+            },
+           ]
+
     }
 }
 
@@ -36,21 +38,28 @@ export class FavoritesView extends Favorites {
     }
 
     update() {
-        this.removeAlltr()
+        this.removeAllTr()
 
-        this.entries.forEach( user => {
-            const row = this.creatRow()
-            row.querySelector('.user img').scr = `https://github.com/${user.login}.png`
+        this.entries.forEach(user => {
+            const row = this.createRow()
+           
+            row.querySelector('.user img').src = `https://github.com/${user.login}.png`
+            row.querySelector('.user img').alt = `Imagem de ${user.name}` 
+            row.querySelector('.user p').textContent = user.name
+            row.querySelector('.user span').textContent = user.login
+            row.querySelector('.repositories').textContent = user.public_repos
+            row.querySelector('.followers').textContent = user.followers
+
+
 
             this.tbody.append(row)
-    })
+        })
+    }
 
-}
-
-    creatRow() {
+    createRow() {
         const tr = document.createElement('tr')
 
-        tr.innerHTML = `
+        tr.innerHTML =`
             <td class="user">
                 <img src="https://github.com/erikpablo.png" alt="Imagem de erik">
                 <a target="_blank" href="https://github.com/erikpablo">
@@ -66,17 +75,17 @@ export class FavoritesView extends Favorites {
             </td>
             <td>
                 <button class="remove">&times;</button>
-            </td>`
+            </td>
+        `
 
         return tr
     }
     
-    removeAlltr() {
-    
+    removeAllTr() {
         this.tbody.querySelectorAll('tr')
-            .forEach((tr) => {
-                tr.remove()
-            })       
-        }
+        .forEach((tr) => {
+           tr.remove() 
+        })
+        
     }
-
+}
