@@ -28,10 +28,11 @@ export class Favorites {
 
     delete(user) {
         // Higher-order functions (map, filter, find, reduce)
-        const filteredEntries = this.entries.filter( entry => {
-            entry.login !== user.login
-        })
-        console.log(filteredEntries)
+        const filteredEntries = this.entries.filter(entry =>
+        entry.login !== user.login)
+
+        this.entries = filteredEntries
+        this.update()
     }
 }
 
