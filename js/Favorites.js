@@ -34,6 +34,10 @@ export class Favorites {
             if(user.login === undefined) {
                throw new Error('Usuário não encontrado') 
             }
+
+            this.entries = [user, ...this.entries]
+            this.update()
+
         } catch(error){
             alert(error.message)
         }
